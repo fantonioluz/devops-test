@@ -1,4 +1,3 @@
-
 services:
   mongo:
     image: mongo
@@ -15,6 +14,7 @@ services:
       - ./reserva-salas/.env
     depends_on:
       - mongo
+    command: npm start  # ou o comando necessário para rodar seu servidor de API
 
   frontend:
     build: ./frontend
@@ -24,3 +24,4 @@ services:
       - api
     environment:
       - VITE_API_URL=http://api:5000
+    command: npm run dev  # ou o comando necessário para rodar seu servidor front-end
