@@ -1,48 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Typography, Button, Box, List, ListItem, ListItemText } from '@mui/material';
+import SalaList from '../components/SalaList';
 import api from '../api/axiosConfig';
 
-function ReservasPage() {
-  const [reservas, setReservas] = useState([]);
+const ReservasPage = () => {
+  const [salas, setSalas] = useState([]);
 
   useEffect(() => {
-    const fetchReservas = async () => {
-      try {
-        const response = await api.get('/reservas/usuario');
-        setReservas(response.data);
-      } catch (error) {
-        console.error("Erro ao buscar reservas", error);
-      }
+    const fetchSalas = async () => {
+      const response = await api.get('/salas');
+      setSalas(response.data);
     };
-    fetchReservas();
+
+    fetchSalas();
   }, []);
 
-  const cancelarReserva = async (id) => {
-    try {
-      await api.delete(`/reservas/${id}`);
-      setReservas(reservas.filter(reserva => reserva._id !== id));
-    } catch (error) {
-      console.error("Erro ao cancelar reserva", error);
-    }
-  };
-
   return (
-    <Container>
-      <Box mt={4}>
-        <Typography variant="h4">Minhas Reservas</Typography>
-        <List>
-          {reservas.map((reserva) => (
-            <ListItem key={reserva._id} divider>
-              <ListItemText primary={`Sala: ${reserva.sala.nome}`} secondary={`Data: ${new Date(reserva.dataInicio).toLocaleString()} - ${new Date(reserva.dataFim).toLocaleString()}`} />
-              <Button variant="contained" color="secondary" onClick={() => cancelarReserva(reserva._id)}>
-                Cancelar
-              </Button>
-            </ListItem>
-          ))}
-        </List>
-      </Box>
-    </Container>
+    <div className="p-6">
+      <SalaList salas={salas} />
+    </div>
   );
-}
+};
 
-export default ReservasPage
+export default ReservasPage;
