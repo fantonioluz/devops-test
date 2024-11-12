@@ -13,7 +13,7 @@ app.use(express.json());
 
 // Configure o CORS para permitir requisições do front-end
 app.use(cors({
-    origin: 'http://localhost:5173', // Substitua pelo endereço do front-end em produção, se necessário
+    origin: 'http://localhost:3000', // Substitua pelo endereço do front-end em produção, se necessário
   }));
 
 // Rota para documentação do Swagger
