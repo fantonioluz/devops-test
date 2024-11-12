@@ -23,4 +23,4 @@ services:
     depends_on:
       - api
     environment:
-      - VITE_API_URL=http://backend:5000
+      - VITE_API_URL=http://api:5000
