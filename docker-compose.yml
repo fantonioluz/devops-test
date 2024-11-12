@@ -1,0 +1,26 @@
+
+services:
+  mongo:
+    image: mongo
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_DATABASE: reservaSalas
+
+  api:
+    build: ./reserva-salas
+    ports:
+      - '5000:5000'
+    env_file:
+      - ./reserva-salas/.env
+    depends_on:
+      - mongo
+
+  frontend:
+    build: ./frontend
+    ports:
+      - '3000:3000'
+    depends_on:
+      - api
+    environment:
+      - VITE_API_URL=http://backend:5000
