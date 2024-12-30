@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      initContainers:
+      - name: wait-for-mongo
+        image: busybox
+        command: ['sh', '-c', 'until nc -z -v -w30 mongo-service 27017; do echo "Waiting for MongoDB..."; sleep 5; done;']
+      containers:
+      - name: api
+        image: room-reservation-api:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5000
+        env:
+        - name: MONGO_URI
+          value: mongodb://root:password123@mongo-service:27017/reservaSalas
