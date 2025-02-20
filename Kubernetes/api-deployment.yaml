@@ -24,4 +24,4 @@ spec:
         - containerPort: 5000
         env:
         - name: MONGO_URI
-          value: mongodb://root:password123@mongo-service:27017/reservaSalas
+          value: mongodb://mongo-service:27017/reservaSalas

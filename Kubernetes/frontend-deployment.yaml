@@ -17,7 +17,7 @@ spec:
         image: room-reservation-frontend:latest
         imagePullPolicy: Never
         ports:
-        - containerPort: 80
+        - containerPort: 3030
         env:
         - name: VITE_API_URL
           value: http://api-service:5000
