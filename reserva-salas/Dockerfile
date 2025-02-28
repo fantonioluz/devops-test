@@ -1,5 +1,5 @@
 # Usa uma imagem oficial do Node
-FROM node:18
+FROM node:22
 
 # Define o diretório de trabalho na imagem
 WORKDIR /usr/src/app

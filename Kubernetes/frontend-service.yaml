@@ -6,24 +6,7 @@ spec:
   selector:
     app: frontend
   ports:
-    - name: 
-      protocol: TCP
+    - protocol: TCP
       port: 3030
-
----
-
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: frontend-ingress
-spec:
-  rules:
-  - http:
-      paths:
-      - pathType: Prefix
-        path: "/app"
-        backend:
-          service:
-            name: frontend-service
-            port:
-              number: 3030
+      targetPort: 3030
+  type: NodePort
