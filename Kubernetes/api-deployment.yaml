@@ -24,6 +24,6 @@ spec:
         - containerPort: 5000
         env:
         - name: MONGO_URI
-          value: mongodb://mongo-service:27017/reservaSalas
+          value: "mongodb://root:password123@mongo-service:27017/reservaSalas?authSource=admin"
         - name: JWT_SECRET
           value: b941c6d9285fcfc7166810e6dcfb04f0a29e717ddead876ce11b4a1941cf750d00a171ca7e4ae916bdd9148715387c13478379a01091262b948a627bb901ad64ebbfe50a5261fca0603ed45393e7f1ebb8d0b2814839c95d4beaca45bb91e9d4e5794591f6055258a5726aab2b52ada91e2b9eb7e77c91430ff9e7c8624b387fb4264bddf09b6304a72ee528ec8868e67cd124d30c6da69163b4d09f05e65a44abc8f731f9721e6cefea1f141580466a3c8c5cfe0f53d69cde71216c382d2a943a0b72ff5f4fc9705d2ecba6c455916f05bcc20566757a0b69549d37af34c95c78f6b98e2105121f955f2dede020b9122a8e6c9aecb7d88e91e82af55dde2009

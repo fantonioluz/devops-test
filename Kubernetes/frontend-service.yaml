@@ -9,4 +9,23 @@ spec:
     - protocol: TCP
       port: 3030
       targetPort: 3030
-  type: NodePort
+  type: ClusterIP
+
+
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: frontend-ingress
+spec:
+  rules:
+    - host: frontend.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend-service
+                port:
+                  number: 3030

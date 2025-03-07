@@ -11,10 +11,16 @@ connectDB();
 
 app.use(express.json());
 
-// Configure o CORS para permitir requisições do front-end
+const allowedOrigins = [
+  "http://localhost:3030",  // Se estiver rodando localmente
+  "http://localhost:9090",  // Se estiver fazendo port-forward
+  "http://frontend.local",  // Se estiver acessando via Ingress
+  "http://frontend-service:3030" // Comunicação dentro do cluster
+];
+
 app.use(cors({
-    origin: 'http://localhoost:3030', // Substitua pelo endereço do front-end em produção, se necessário
-  }));
+  origin: allowedOrigins,
+}));
 
 // Rota para documentação do Swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
